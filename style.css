@@ -3284,7 +3284,7 @@ span.document{
 @media screen and (-webkit-min-device-pixel-ratio:0) {
         /*targets android aswell*/
   }
-@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-color-index: 0) and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: .001dpcm) {
+.safari{
     #main-menu{
         background-color: red;
     }
