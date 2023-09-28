@@ -2343,7 +2343,7 @@ span.document{
         transform: scaleX(-1) rotate(358deg);
     }
 }
-@media (min-width: 501px) and (max-width: 1024px) {
+@media (min-width: 501px) and (max-width: 1024px) and not (orientation: landscape) {
     .mobile-hide{
         display: none;
     }
@@ -3250,8 +3250,6 @@ span.document{
         -ms-transform: scaleX(-1) rotate(358deg);
         transform: scaleX(-1) rotate(358deg);
     }
-}
-@media (min-width: 501px) and (max-width: 1024px) and (orientation: landscape) {
     .mobile-menu{
         padding-top: 4%;
         min-height: -webkit-max-content;
@@ -3277,5 +3275,15 @@ span.document{
             height: 100%;
             opacity: 1;
         }
+    }
+}
+@media (min-width: 501px) and (max-width: 1024px) and (orientation: landscape){
+    :root{
+        font-size: 0.52083vw;
+    }
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    #main-menu{
+        background-color: red;
     }
   }
