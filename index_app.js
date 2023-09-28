@@ -173,23 +173,6 @@ hamburger.addEventListener('click', () =>{
         
         const columns = carousel.querySelectorAll('.carousel-column');
 
-        columns.forEach((column, index) => {
-            const text = column.querySelector('.carousel-text');
-            if (index === 0 && x > firstColumnRightEdge) {
-                column.style.position = 'static';
-                column.style.left = '0';
-            } else if (index !== 0) {
-                const columnRightEdge = column.getBoundingClientRect().right;
-                if (columnRightEdge < firstColumnRightEdge) {
-                    column.style.position = 'static';
-                    column.style.left = '0';
-                } else if (columnRightEdge > firstColumnRightEdge) {
-                    column.style.position = ''; // Remove sticky style
-                    column.style.left = ''; // Remove left style
-                }
-            }
-        });
-
         if (walk < 0) {
             // Prevent scrolling past the left edge
             carousel.scrollLeft = Math.max(scrollLeft - walk, 0);
