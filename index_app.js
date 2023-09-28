@@ -48,9 +48,9 @@ if (carousel){
         carousel.classList.remove('active');
     }
       // Check if the user agent string contains "Safari"
-    var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+      var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-    if (isSafari) {
+    if (isMobile) {
 
     }
     else{
