@@ -69,8 +69,7 @@ if (carousel){
                 if (columnRightEdge < firstColumnRightEdge) {
                     column.classList.add('sticky')
                 } else if (columnRightEdge > firstColumnRightEdge) {
-                    column.style.position = ''; // Remove sticky style
-                    column.style.left = ''; // Remove left style
+                    column.classList.remove('sticky')
                 }
             }
         });
@@ -84,7 +83,7 @@ if (carousel){
         
         columns.forEach((column, index) => {
             const text = column.querySelector('.carousel-text');
-            if (columns[index-1 ] && column !== firstColumn && column.style.position === 'sticky'){
+            if (columns[index-1 ] && column !== firstColumn && column.classList.contains('sticky')){
                 columns[index-1].querySelector('.carousel-text').style.opacity = 0;
             }
             else {

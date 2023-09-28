@@ -3295,6 +3295,9 @@ span.document{
     :root{
         font-size: 0.67083vw;
     }
+    .carousel-bg{
+        width: 120%;
+    }
     .fixed-column {
         position: static;
     }
@@ -3341,10 +3344,10 @@ span.document{
         top: 38rem;
     }
     .splash4{
-        top: 378rem;
+        top: 392rem;
     }
     .produkty-splash4{
-        top: 172rem;
+        top: 182rem;
     }
     .produkty-splash6{
         top: -39rem;
@@ -3357,7 +3360,7 @@ span.document{
         margin-left: 7rem;
     }
     #about-figures-desktop{
-        top: -72%;
+        top: -65%;
     }
     #products-grid {
         grid-template-rows: repeat(2, 1fr);
@@ -3391,10 +3394,13 @@ span.document{
         width: auto;
     }
     .splash5{
-        top: 557rem;
+        top: 575rem;
+    }
+    .produkty-splash5{
+        top: 359rem;
     }
     h3{
-        font-size: 7rem;
+        font-size: 5rem;
     }
     .footer-menu{
         font-size: 2.5rem;
