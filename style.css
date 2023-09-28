@@ -3278,12 +3278,14 @@ span.document{
     }
 }
 @media (min-width: 501px) and (max-width: 1024px) and (orientation: landscape){
-    :root{
-        font-size: 0.52083vw;
-    }
+
+    /*works*/
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {
+        /*targets android aswell*/
+  }
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-color-index: 0) and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: .001dpcm) {
     #main-menu{
         background-color: red;
     }
-  }
+}
