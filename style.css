@@ -2347,6 +2347,9 @@ span.document{
     .mobile-hide{
         display: none;
     }
+    .fixed-column {
+        position: static;
+    }
     .scrollbar{
         display: none;
     }
@@ -3280,6 +3283,9 @@ span.document{
 @media (min-width: 501px) and (max-width: 1024px) and (orientation: landscape){
     :root{
         font-size: 0.67083vw;
+    }
+    .fixed-column {
+        position: static;
     }
     .mobile-hide{
         display: none;
