@@ -47,61 +47,52 @@ if (carousel){
         isDown = false;
         carousel.classList.remove('active');
     }
-      // Check if the user agent string contains "Safari"
-      var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    function moveCarousel(x) {
+        const walk = x - startX;
+        
+        const fixedColumn = carousel.querySelector('.carousel-column:first-child');
+        const lastColumn = carousel.querySelector('.carousel-column:last-child');
+        const firstColumn = document.querySelector('.fixed-column');
+        const firstText = fixedColumn.querySelector('.carousel-text');
+        const finaltext= document.querySelector('.finaltext');
 
-    if (isMobile) {
+        const firstColumnRightEdge = fixedColumn.getBoundingClientRect().right;
+        
+        const columns = carousel.querySelectorAll('.carousel-column');
 
-    }
-    else{
-        function moveCarousel(x) {
-            const walk = x - startX;
-            
-            const fixedColumn = carousel.querySelector('.carousel-column:first-child');
-            const lastColumn = carousel.querySelector('.carousel-column:last-child');
-            const firstColumn = document.querySelector('.fixed-column');
-            const firstText = fixedColumn.querySelector('.carousel-text');
-            const finaltext= document.querySelector('.finaltext');
-    
-            const firstColumnRightEdge = fixedColumn.getBoundingClientRect().right;
-            
-            const columns = carousel.querySelectorAll('.carousel-column');
-    
-            columns.forEach((column, index) => {
-                const text = column.querySelector('.carousel-text');
-                if (index === 0 && x > firstColumnRightEdge) {
-                    column.style.position = 'sticky';
-                    column.style.left = '0';
-                } else if (index !== 0) {
-                    const columnRightEdge = column.getBoundingClientRect().right;
-                    if (columnRightEdge < firstColumnRightEdge) {
-                        column.style.position = 'sticky';
-                        column.style.left = '0';
-                    } else if (columnRightEdge > firstColumnRightEdge) {
-                        column.style.position = ''; // Remove sticky style
-                        column.style.left = ''; // Remove left style
-                    }
+        columns.forEach((column, index) => {
+            const text = column.querySelector('.carousel-text');
+            if (index === 0 && x > firstColumnRightEdge) {
+                column.classList.add('sticky')
+            } else if (index !== 0) {
+                const columnRightEdge = column.getBoundingClientRect().right;
+                if (columnRightEdge < firstColumnRightEdge) {
+                    column.classList.add('sticky')
+                } else if (columnRightEdge > firstColumnRightEdge) {
+                    column.style.position = ''; // Remove sticky style
+                    column.style.left = ''; // Remove left style
                 }
-            });
-    
-            if (walk < 0) {
-                // Prevent scrolling past the left edge
-                carousel.scrollLeft = Math.max(scrollLeft - walk, 0);
-            } else if (x > firstColumnRightEdge) {
-                carousel.scrollLeft = scrollLeft - walk;
             }
-            
-            columns.forEach((column, index) => {
-                const text = column.querySelector('.carousel-text');
-                if (columns[index-1 ] && column !== firstColumn && column.style.position === 'sticky'){
-                    columns[index-1].querySelector('.carousel-text').style.opacity = 0;
-                }
-                else {
-                    text.style.opacity = 1;
-                }
-            });
-    }
+        });
+
+        if (walk < 0) {
+            // Prevent scrolling past the left edge
+            carousel.scrollLeft = Math.max(scrollLeft - walk, 0);
+        } else if (x > firstColumnRightEdge) {
+            carousel.scrollLeft = scrollLeft - walk;
+        }
+        
+        columns.forEach((column, index) => {
+            const text = column.querySelector('.carousel-text');
+            if (columns[index-1 ] && column !== firstColumn && column.style.position === 'sticky'){
+                columns[index-1].querySelector('.carousel-text').style.opacity = 0;
+            }
+            else {
+                text.style.opacity = 1;
+            }
+        });
 }
+
 
 
 const carouselBg = document.querySelector('#carouselBg');

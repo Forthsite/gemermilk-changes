@@ -637,6 +637,10 @@ section:not(:first-child){
     left: 0;
     z-index: 0;
 }
+.sticky{
+    position: sticky;
+    left: 0;
+}
 .active{
     cursor: -webkit-grabbing;
     cursor: grabbing;
@@ -1440,6 +1444,13 @@ span.document{
 
 @media (max-width: 500px) {
     :root{
+    }
+    .fixed-column {
+        position: static;
+    }
+    .sticky{
+        position: static;
+        left: initial;
     }
     .mobile-hide{
         display: none;
