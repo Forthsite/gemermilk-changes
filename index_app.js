@@ -47,53 +47,60 @@ if (carousel){
         isDown = false;
         carousel.classList.remove('active');
     }
+      // Check if the user agent string contains "Safari"
+    var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
-    function moveCarousel(x) {
-        const walk = x - startX;
-        
-        const fixedColumn = carousel.querySelector('.carousel-column:first-child');
-        const lastColumn = carousel.querySelector('.carousel-column:last-child');
-        const firstColumn = document.querySelector('.fixed-column');
-        const firstText = fixedColumn.querySelector('.carousel-text');
-        const finaltext= document.querySelector('.finaltext');
+    if (isSafari) {
 
-        const firstColumnRightEdge = fixedColumn.getBoundingClientRect().right;
-        
-        const columns = carousel.querySelectorAll('.carousel-column');
-
-        columns.forEach((column, index) => {
-            const text = column.querySelector('.carousel-text');
-            if (index === 0 && x > firstColumnRightEdge) {
-                column.style.position = 'sticky';
-                column.style.left = '0';
-            } else if (index !== 0) {
-                const columnRightEdge = column.getBoundingClientRect().right;
-                if (columnRightEdge < firstColumnRightEdge) {
+    }
+    else{
+        function moveCarousel(x) {
+            const walk = x - startX;
+            
+            const fixedColumn = carousel.querySelector('.carousel-column:first-child');
+            const lastColumn = carousel.querySelector('.carousel-column:last-child');
+            const firstColumn = document.querySelector('.fixed-column');
+            const firstText = fixedColumn.querySelector('.carousel-text');
+            const finaltext= document.querySelector('.finaltext');
+    
+            const firstColumnRightEdge = fixedColumn.getBoundingClientRect().right;
+            
+            const columns = carousel.querySelectorAll('.carousel-column');
+    
+            columns.forEach((column, index) => {
+                const text = column.querySelector('.carousel-text');
+                if (index === 0 && x > firstColumnRightEdge) {
                     column.style.position = 'sticky';
                     column.style.left = '0';
-                } else if (columnRightEdge > firstColumnRightEdge) {
-                    column.style.position = ''; // Remove sticky style
-                    column.style.left = ''; // Remove left style
+                } else if (index !== 0) {
+                    const columnRightEdge = column.getBoundingClientRect().right;
+                    if (columnRightEdge < firstColumnRightEdge) {
+                        column.style.position = 'sticky';
+                        column.style.left = '0';
+                    } else if (columnRightEdge > firstColumnRightEdge) {
+                        column.style.position = ''; // Remove sticky style
+                        column.style.left = ''; // Remove left style
+                    }
                 }
+            });
+    
+            if (walk < 0) {
+                // Prevent scrolling past the left edge
+                carousel.scrollLeft = Math.max(scrollLeft - walk, 0);
+            } else if (x > firstColumnRightEdge) {
+                carousel.scrollLeft = scrollLeft - walk;
             }
-        });
-
-        if (walk < 0) {
-            // Prevent scrolling past the left edge
-            carousel.scrollLeft = Math.max(scrollLeft - walk, 0);
-        } else if (x > firstColumnRightEdge) {
-            carousel.scrollLeft = scrollLeft - walk;
-        }
-        
-        columns.forEach((column, index) => {
-            const text = column.querySelector('.carousel-text');
-            if (columns[index-1 ] && column !== firstColumn && column.style.position === 'sticky'){
-                columns[index-1].querySelector('.carousel-text').style.opacity = 0;
-            }
-            else {
-                text.style.opacity = 1;
-            }
-        });
+            
+            columns.forEach((column, index) => {
+                const text = column.querySelector('.carousel-text');
+                if (columns[index-1 ] && column !== firstColumn && column.style.position === 'sticky'){
+                    columns[index-1].querySelector('.carousel-text').style.opacity = 0;
+                }
+                else {
+                    text.style.opacity = 1;
+                }
+            });
+    }
 }
 
 
@@ -155,42 +162,6 @@ hamburger.addEventListener('click', () =>{
     menuIcon.classList.toggle("toggled");
 });
 
-  // Check if the user agent string contains "Safari"
-  var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-  // Add a class to the HTML element if it's Safari
-  if (isSafari) {
-    function moveCarousel(x) {
-        const walk = x - startX;
-        
-        const fixedColumn = carousel.querySelector('.carousel-column:first-child');
-        const lastColumn = carousel.querySelector('.carousel-column:last-child');
-        const firstColumn = document.querySelector('.fixed-column');
-        const firstText = fixedColumn.querySelector('.carousel-text');
-        const finaltext= document.querySelector('.finaltext');
-
-        const firstColumnRightEdge = fixedColumn.getBoundingClientRect().right;
-        
-        const columns = carousel.querySelectorAll('.carousel-column');
-
-        if (walk < 0) {
-            // Prevent scrolling past the left edge
-            carousel.scrollLeft = Math.max(scrollLeft - walk, 0);
-        } else if (x > firstColumnRightEdge) {
-            carousel.scrollLeft = scrollLeft - walk;
-        }
-        
-        columns.forEach((column, index) => {
-            const text = column.querySelector('.carousel-text');
-            if (columns[index-1 ] && column !== firstColumn && column.style.position === 'sticky'){
-                columns[index-1].querySelector('.carousel-text').style.opacity = 0;
-            }
-            else {
-                text.style.opacity = 1;
-            }
-        });
-}
-  }
 
 
 
