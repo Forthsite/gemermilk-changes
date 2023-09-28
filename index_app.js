@@ -160,36 +160,6 @@ hamburger.addEventListener('click', () =>{
 
   // Add a class to the HTML element if it's Safari
   if (isSafari) {
-    function moveCarousel(x) {
-        const walk = x - startX;
-        
-        const fixedColumn = carousel.querySelector('.carousel-column:first-child');
-        const lastColumn = carousel.querySelector('.carousel-column:last-child');
-        const firstColumn = document.querySelector('.fixed-column');
-        const firstText = fixedColumn.querySelector('.carousel-text');
-        const finaltext= document.querySelector('.finaltext');
-
-        const firstColumnRightEdge = fixedColumn.getBoundingClientRect().right;
-        
-        const columns = carousel.querySelectorAll('.carousel-column');
-
-        if (walk < 0) {
-            // Prevent scrolling past the left edge
-            carousel.scrollLeft = Math.max(scrollLeft - walk, 0);
-        } else if (x > firstColumnRightEdge) {
-            carousel.scrollLeft = scrollLeft - walk;
-        }
-        
-        columns.forEach((column, index) => {
-            const text = column.querySelector('.carousel-text');
-            if (columns[index-1 ] && column !== firstColumn && column.style.position === 'sticky'){
-                columns[index-1].querySelector('.carousel-text').style.opacity = 0;
-            }
-            else {
-                text.style.opacity = 1;
-            }
-        });
-}
   }
 
 

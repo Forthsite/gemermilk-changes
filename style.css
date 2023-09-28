@@ -3284,3 +3284,10 @@ span.document{
 @media screen and (-webkit-min-device-pixel-ratio:0) {
         /*targets android aswell*/
   }
+/* Safari 11+ */
+@media not all and (min-resolution:.001dpcm)
+{ @supports (-webkit-appearance:none) and (stroke-color:transparent) {
+.fixed-column{
+    position: static;
+}
+}}
